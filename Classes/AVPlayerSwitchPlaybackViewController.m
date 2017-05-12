@@ -1,5 +1,5 @@
 /*
-     File: AVPlayerDemoPlaybackViewController.m
+     File: AVPlayerSwitchPlaybackViewController.m
  Abstract: UIViewController managing a playback view, thumbnail view, and associated playback UI.
   Version: 1.3
  
@@ -46,11 +46,11 @@
  */
 
 
-#import "AVPlayerDemoPlaybackViewController.h"
+#import "AVPlayerSwitchPlaybackViewController.h"
 #import "AVPlayerDemoPlaybackView.h"
 #import "AVPlayerDemoMetadataViewController.h"
 
-@interface AVPlayerDemoPlaybackViewController ()
+@interface AVPlayerSwitchPlaybackViewController ()
 - (void)play:(id)sender;
 - (void)pause:(id)sender;
 - (void)showMetadata:(id)sender;
@@ -74,7 +74,7 @@
 - (NSURL*)URL;
 @end
 
-@interface AVPlayerDemoPlaybackViewController (Player)
+@interface AVPlayerSwitchPlaybackViewController (Player)
 - (void)removePlayerTimeObserver;
 - (CMTime)playerItemDuration;
 - (BOOL)isPlaying;
@@ -83,14 +83,14 @@
 - (void)prepareToPlayAsset:(AVURLAsset *)asset withKeys:(NSArray *)requestedKeys;
 @end
 
-static void *AVPlayerDemoPlaybackViewControllerRateObservationContext = &AVPlayerDemoPlaybackViewControllerRateObservationContext;
-static void *AVPlayerDemoPlaybackViewControllerStatusObservationContext = &AVPlayerDemoPlaybackViewControllerStatusObservationContext;
-static void *AVPlayerDemoPlaybackViewControllerCurrentItemObservationContext = &AVPlayerDemoPlaybackViewControllerCurrentItemObservationContext;
+static void *AVPlayerSwitchPlaybackViewControllerRateObservationContext = &AVPlayerSwitchPlaybackViewControllerRateObservationContext;
+static void *AVPlayerSwitchPlaybackViewControllerStatusObservationContext = &AVPlayerSwitchPlaybackViewControllerStatusObservationContext;
+static void *AVPlayerSwitchPlaybackViewControllerCurrentItemObservationContext = &AVPlayerSwitchPlaybackViewControllerCurrentItemObservationContext;
 
 #pragma mark -
-@implementation AVPlayerDemoPlaybackViewController
+@implementation AVPlayerSwitchPlaybackViewController
 
-@synthesize mPlayer, mPlayerItem, mPlaybackView, mPlaybackView2,  mToolbar, mPlayButton, mStopButton, mScrubber;
+@synthesize mPlayer, mPlayerItem, mPlaybackView, mToolbar, mPlayButton, mStopButton, mScrubber;
 
 #pragma mark Asset URL
 
@@ -233,7 +233,7 @@ static void *AVPlayerDemoPlaybackViewControllerCurrentItemObservationContext = &
 	}
 
 	/* Update the scrubber during normal playback. */
-	__weak AVPlayerDemoPlaybackViewController *weakSelf = self;
+	__weak AVPlayerSwitchPlaybackViewController *weakSelf = self;
 	mTimeObserver = [self.mPlayer addPeriodicTimeObserverForInterval:CMTimeMakeWithSeconds(interval, NSEC_PER_SEC) 
 								queue:NULL /* If you pass NULL, the main queue is used. */
 								usingBlock:^(CMTime time) 
@@ -321,7 +321,7 @@ static void *AVPlayerDemoPlaybackViewControllerCurrentItemObservationContext = &
 			CGFloat width = CGRectGetWidth([self.mScrubber bounds]);
 			double tolerance = 0.5f * duration / width;
 			
-			__weak AVPlayerDemoPlaybackViewController *weakSelf = self;
+			__weak AVPlayerSwitchPlaybackViewController *weakSelf = self;
 			mTimeObserver = [self.mPlayer addPeriodicTimeObserverForInterval:CMTimeMakeWithSeconds(tolerance, NSEC_PER_SEC) queue:NULL usingBlock:
 			^(CMTime time)
 			{
@@ -383,7 +383,6 @@ static void *AVPlayerDemoPlaybackViewControllerCurrentItemObservationContext = &
 - (void)viewDidUnload
 {
     self.mPlaybackView = nil;
-    self.mPlaybackView2 = nil;
 	
     self.mToolbar = nil;
     self.mPlayButton = nil;
@@ -529,7 +528,7 @@ static void *AVPlayerDemoPlaybackViewControllerCurrentItemObservationContext = &
 
 @end
 
-@implementation AVPlayerDemoPlaybackViewController (Player)
+@implementation AVPlayerSwitchPlaybackViewController (Player)
 
 #pragma mark Player Item
 
@@ -666,7 +665,7 @@ static void *AVPlayerDemoPlaybackViewControllerCurrentItemObservationContext = &
     [self.mPlayerItem addObserver:self 
                       forKeyPath:@"status"
                          options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew
-                         context:AVPlayerDemoPlaybackViewControllerStatusObservationContext];
+                         context:AVPlayerSwitchPlaybackViewControllerStatusObservationContext];
 	
     /* When the player item has played to its end time we'll toggle
      the movie controller Pause button to be the Play button */
@@ -689,13 +688,13 @@ static void *AVPlayerDemoPlaybackViewControllerCurrentItemObservationContext = &
         [self.player addObserver:self 
                       forKeyPath:@"currentItem"
                          options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew
-                         context:AVPlayerDemoPlaybackViewControllerCurrentItemObservationContext];
+                         context:AVPlayerSwitchPlaybackViewControllerCurrentItemObservationContext];
         
         /* Observe the AVPlayer "rate" property to update the scrubber control. */
         [self.player addObserver:self 
                       forKeyPath:@"rate"
                          options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew
-                         context:AVPlayerDemoPlaybackViewControllerRateObservationContext];
+                         context:AVPlayerSwitchPlaybackViewControllerRateObservationContext];
     }
     
     /* Make our new AVPlayerItem the AVPlayer's current item. */
@@ -741,7 +740,7 @@ static void *AVPlayerDemoPlaybackViewControllerCurrentItemObservationContext = &
 			context:(void*)context
 {
 	/* AVPlayerItem "status" property value observer. */
-	if (context == AVPlayerDemoPlaybackViewControllerStatusObservationContext)
+	if (context == AVPlayerSwitchPlaybackViewControllerStatusObservationContext)
 	{
 		[self syncPlayPauseButtons];
 
@@ -782,14 +781,14 @@ static void *AVPlayerDemoPlaybackViewControllerCurrentItemObservationContext = &
         }
 	}
 	/* AVPlayer "rate" property value observer. */
-	else if (context == AVPlayerDemoPlaybackViewControllerRateObservationContext)
+	else if (context == AVPlayerSwitchPlaybackViewControllerRateObservationContext)
 	{
         [self syncPlayPauseButtons];
 	}
 	/* AVPlayer "currentItem" property observer. 
         Called when the AVPlayer replaceCurrentItemWithPlayerItem: 
         replacement will/did occur. */
-	else if (context == AVPlayerDemoPlaybackViewControllerCurrentItemObservationContext)
+	else if (context == AVPlayerSwitchPlaybackViewControllerCurrentItemObservationContext)
 	{
         AVPlayerItem *newPlayerItem = [change objectForKey:NSKeyValueChangeNewKey];
         
@@ -803,14 +802,12 @@ static void *AVPlayerDemoPlaybackViewControllerCurrentItemObservationContext = &
         {
             /* Set the AVPlayer for which the player layer displays visual output. */
             [self.mPlaybackView setPlayer:mPlayer];
-            [self.mPlaybackView2 setPlayer:mPlayer];
             
             [self setViewDisplayName];
             
             /* Specifies that the player should preserve the video’s aspect ratio and 
              fit the video within the layer’s bounds. */
             [self.mPlaybackView setVideoFillMode:AVLayerVideoGravityResizeAspect];
-            [self.mPlaybackView2 setVideoFillMode:AVLayerVideoGravityResizeAspect];
             [self syncPlayPauseButtons];
         }
 	}

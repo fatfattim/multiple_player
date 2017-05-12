@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		187AE41D1EC56140006E3ABF /* AVPlayerSwitchPlaybackView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 187AE41B1EC56140006E3ABF /* AVPlayerSwitchPlaybackView.xib */; };
+		187AE4201EC56276006E3ABF /* AVPlayerSwitchPlaybackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 187AE41F1EC56276006E3ABF /* AVPlayerSwitchPlaybackViewController.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
@@ -50,6 +52,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		187AE41C1EC56140006E3ABF /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/AVPlayerSwitchPlaybackView.xib; sourceTree = "<group>"; };
+		187AE41E1EC56276006E3ABF /* AVPlayerSwitchPlaybackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVPlayerSwitchPlaybackViewController.h; sourceTree = "<group>"; };
+		187AE41F1EC56276006E3ABF /* AVPlayerSwitchPlaybackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVPlayerSwitchPlaybackViewController.m; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D6058910D05DD3D006BFB54 /* AVPlayerDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AVPlayerDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -168,15 +173,16 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				AF23D2E7133D527B00A5E64A /* AVPlayerDemoWindow.xib */,
-				AF95470E1354DFDE00AC186A /* AVPlayerDemoPlaybackView.xib */,
-				AF23D2E1133D524A00A5E64A /* AVPlayerDemoMetadataView.xib */,
-				AFA92756138468CD001CD46B /* AVPlayerDemoWindow-iPad.xib */,
-				AF23D333133D565700A5E64A /* AVPlayerDemoPlaybackView-iPad.xib */,
-				AF23D32F133D563900A5E64A /* AVPlayerDemoMetadataView-iPad.xib */,
-				AFFB6C28133C5AD500530D6D /* images */,
-				84C18D41172F40C900E0F687 /* Default-568h@2x.png */,
 				8D1107310486CEB800E47090 /* AVPlayerDemo-Info.plist */,
+				AF23D32F133D563900A5E64A /* AVPlayerDemoMetadataView-iPad.xib */,
+				AF23D2E1133D524A00A5E64A /* AVPlayerDemoMetadataView.xib */,
+				AF23D333133D565700A5E64A /* AVPlayerDemoPlaybackView-iPad.xib */,
+				AF95470E1354DFDE00AC186A /* AVPlayerDemoPlaybackView.xib */,
+				AFA92756138468CD001CD46B /* AVPlayerDemoWindow-iPad.xib */,
+				AF23D2E7133D527B00A5E64A /* AVPlayerDemoWindow.xib */,
+				187AE41B1EC56140006E3ABF /* AVPlayerSwitchPlaybackView.xib */,
+				84C18D41172F40C900E0F687 /* Default-568h@2x.png */,
+				AFFB6C28133C5AD500530D6D /* images */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -226,10 +232,12 @@
 		AFD07403134838B200C50031 /* Playback */ = {
 			isa = PBXGroup;
 			children = (
-				832FD03011AC05FE0004EA2D /* AVPlayerDemoPlaybackViewController.h */,
-				832FD03111AC05FE0004EA2D /* AVPlayerDemoPlaybackViewController.m */,
 				83069BFE11A9FC93006897BE /* AVPlayerDemoPlaybackView.h */,
 				83069BFF11A9FC93006897BE /* AVPlayerDemoPlaybackView.m */,
+				832FD03011AC05FE0004EA2D /* AVPlayerDemoPlaybackViewController.h */,
+				832FD03111AC05FE0004EA2D /* AVPlayerDemoPlaybackViewController.m */,
+				187AE41E1EC56276006E3ABF /* AVPlayerSwitchPlaybackViewController.h */,
+				187AE41F1EC56276006E3ABF /* AVPlayerSwitchPlaybackViewController.m */,
 			);
 			name = Playback;
 			sourceTree = "<group>";
@@ -325,6 +333,7 @@
 				AF23D330133D563900A5E64A /* AVPlayerDemoMetadataView-iPad.xib in Resources */,
 				AF23D334133D565700A5E64A /* AVPlayerDemoPlaybackView-iPad.xib in Resources */,
 				AF9547101354DFDE00AC186A /* AVPlayerDemoPlaybackView.xib in Resources */,
+				187AE41D1EC56140006E3ABF /* AVPlayerSwitchPlaybackView.xib in Resources */,
 				AFA92758138468CD001CD46B /* AVPlayerDemoWindow-iPad.xib in Resources */,
 				AFB5B8421399843F006D0A2D /* Browser-Placeholder@2x.png in Resources */,
 				AFB5B8431399843F006D0A2D /* Browser-Placeholder.png in Resources */,
@@ -353,12 +362,21 @@
 				AFCF602913940F9B00D7A99C /* AssetBrowserItem.m in Sources */,
 				AFCF602A13940F9B00D7A99C /* AssetBrowserController.m in Sources */,
 				AFCF602D1394113200D7A99C /* DirectoryWatcher.m in Sources */,
+				187AE4201EC56276006E3ABF /* AVPlayerSwitchPlaybackViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		187AE41B1EC56140006E3ABF /* AVPlayerSwitchPlaybackView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				187AE41C1EC56140006E3ABF /* English */,
+			);
+			name = AVPlayerSwitchPlaybackView.xib;
+			sourceTree = "<group>";
+		};
 		AF23D2E1133D524A00A5E64A /* AVPlayerDemoMetadataView.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
