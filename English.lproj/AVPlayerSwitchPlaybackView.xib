@@ -16,6 +16,7 @@
                 <outlet property="mScrubber" destination="40" id="43"/>
                 <outlet property="mStopButton" destination="39" id="42"/>
                 <outlet property="mToolbar" destination="37" id="48"/>
+                <outlet property="scrollView" destination="zei-Ab-1RF" id="SWR-VD-725"/>
                 <outlet property="view" destination="1" id="5"/>
             </connections>
         </placeholder>
@@ -36,6 +37,10 @@
                     </subviews>
                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 </view>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" id="zei-Ab-1RF" propertyAccessControl="none">
+                    <rect key="frame" x="16" y="264" width="288" height="176"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </scrollView>
             </subviews>
             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

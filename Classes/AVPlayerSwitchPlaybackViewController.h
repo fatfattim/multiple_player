@@ -56,7 +56,7 @@
 {
 @private
 	IBOutlet AVPlayerDemoPlaybackView* mPlaybackView;
-	
+    IBOutlet UIScrollView *scrollView;
 	IBOutlet UISlider* mScrubber;
     IBOutlet UIToolbar *mToolbar;
     IBOutlet UIBarButtonItem *mPlayButton;

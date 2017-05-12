@@ -46,7 +46,7 @@
  */
 
 #import "AVPlayerDemoAppDelegate.h"
-#import "AVPlayerDemoPlaybackViewController.h"
+#import "AVPlayerSwitchPlaybackViewController.h"
 
 #import <CoreMedia/CoreMedia.h>
 #import <AVFoundation/AVFoundation.h>
@@ -137,7 +137,7 @@ typedef void (^AlertViewCompletionHandler)(void);
 	{
 		if (!self.playbackViewController)
 		{
-			self->playbackViewController = [[AVPlayerDemoPlaybackViewController alloc] init];
+			self->playbackViewController = [[AVPlayerSwitchPlaybackViewController alloc] init];
 		}
 		
 		[self.playbackViewController setURL:URL];
@@ -196,7 +196,7 @@ typedef void (^AlertViewCompletionHandler)(void);
 	{
 		if (!self.playbackViewController)
 		{
-			self->playbackViewController = [[AVPlayerDemoPlaybackViewController alloc] init];
+			self->playbackViewController = [[AVPlayerSwitchPlaybackViewController alloc] init];
 		}
 		
 		[self.playbackViewController setURL:urlAsset.URL];

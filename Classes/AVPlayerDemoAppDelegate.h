@@ -51,7 +51,7 @@
 #import "AssetBrowserController.h"
 #import "AssetTabBarController.h"
 
-@class AVPlayerDemoPlaybackViewController;
+@class AVPlayerSwitchPlaybackViewController;
 
 
 @interface AVPlayerDemoAppDelegate : NSObject <AssetBrowserControllerDelegate, UITableViewDelegate, UINavigationControllerDelegate>
@@ -60,11 +60,11 @@
     IBOutlet UINavigationController* cachedAssetBrowser;
     IBOutlet UIWindow *window;
     UITabBarController *tabBarController;
-	AVPlayerDemoPlaybackViewController* playbackViewController;
+	AVPlayerSwitchPlaybackViewController* playbackViewController;
 }
 
 @property (nonatomic, strong) UINavigationController *cachedAssetBrowser;
-@property (nonatomic, strong) AVPlayerDemoPlaybackViewController* playbackViewController;
+@property (nonatomic, strong) AVPlayerSwitchPlaybackViewController* playbackViewController;
 
 
 @end
