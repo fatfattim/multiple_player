@@ -52,16 +52,15 @@
 @class AVPlayer;
 @class AVPlayerDemoPlaybackView;
 
-@interface AVPlayerSwitchPlaybackViewController : UIViewController
+@interface AVPlayerSwitchPlaybackViewController : UIViewController <UIScrollViewDelegate>
 {
 @private
 	IBOutlet AVPlayerDemoPlaybackView* mPlaybackView;
-    IBOutlet UIScrollView *scrollView;
+    
 	IBOutlet UISlider* mScrubber;
     IBOutlet UIToolbar *mToolbar;
     IBOutlet UIBarButtonItem *mPlayButton;
     IBOutlet UIBarButtonItem *mStopButton;
-
 	float mRestoreAfterScrubbingRate;
 	BOOL seekToZeroBeforePlay;
 	id mTimeObserver;
@@ -72,7 +71,7 @@
 	AVPlayer* mPlayer;
     AVPlayerItem * mPlayerItem;
 }
-
+@property (nonatomic, strong) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, copy) NSURL* URL;
 @property (readwrite, strong, setter=setPlayer:, getter=player) AVPlayer* mPlayer;
 @property (strong) AVPlayerItem* mPlayerItem;

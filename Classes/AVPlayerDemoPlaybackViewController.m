@@ -375,8 +375,8 @@ static void *AVPlayerDemoPlaybackViewControllerCurrentItemObservationContext = &
 	} 
     else 
     {
-        //return [self initWithNibName:@"AVPlayerDemoPlaybackView" bundle:nil];
-        return [self initWithNibName:@"AVPlayerSwitchPlaybackView" bundle:nil];
+        return [self initWithNibName:@"AVPlayerDemoPlaybackView" bundle:nil];
+        //return [self initWithNibName:@"AVPlayerSwitchPlaybackView" bundle:nil];
 	}
 }
 
