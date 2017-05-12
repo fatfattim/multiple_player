@@ -359,7 +359,7 @@ enum {
 {
 	NSArray *visibleIndexPaths = [self.tableView indexPathsForVisibleRows];
 	for (NSIndexPath *indexPath in visibleIndexPaths) {
-		AssetBrowserItem *visibleBrowserItem = [[[activeAssetSources objectAtIndex:indexPath.section] items] objectAtIndex:indexPath.row];
+		AssetBrowserItem *visibleBrowserItem = (AssetBrowserItem *) [[[activeAssetSources objectAtIndex:indexPath.section] items] objectAtIndex:indexPath.row];
 		if ([browserItem isEqual:visibleBrowserItem]) {
 			UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
 			[self configureCell:cell forIndexPath:indexPath];
