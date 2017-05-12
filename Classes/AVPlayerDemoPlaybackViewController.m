@@ -90,7 +90,7 @@ static void *AVPlayerDemoPlaybackViewControllerCurrentItemObservationContext = &
 #pragma mark -
 @implementation AVPlayerDemoPlaybackViewController
 
-@synthesize mPlayer, mPlayerItem, mPlaybackView, mToolbar, mPlayButton, mStopButton, mScrubber;
+@synthesize mPlayer, mPlayerItem, mPlaybackView, mPlaybackView2,  mToolbar, mPlayButton, mStopButton, mScrubber;
 
 #pragma mark Asset URL
 
@@ -382,6 +382,7 @@ static void *AVPlayerDemoPlaybackViewControllerCurrentItemObservationContext = &
 - (void)viewDidUnload
 {
     self.mPlaybackView = nil;
+    self.mPlaybackView2 = nil;
 	
     self.mToolbar = nil;
     self.mPlayButton = nil;
@@ -801,13 +802,14 @@ static void *AVPlayerDemoPlaybackViewControllerCurrentItemObservationContext = &
         {
             /* Set the AVPlayer for which the player layer displays visual output. */
             [self.mPlaybackView setPlayer:mPlayer];
+            [self.mPlaybackView2 setPlayer:mPlayer];
             
             [self setViewDisplayName];
             
             /* Specifies that the player should preserve the video’s aspect ratio and 
              fit the video within the layer’s bounds. */
             [self.mPlaybackView setVideoFillMode:AVLayerVideoGravityResizeAspect];
-            
+            [self.mPlaybackView2 setVideoFillMode:AVLayerVideoGravityResizeAspect];
             [self syncPlayPauseButtons];
         }
 	}

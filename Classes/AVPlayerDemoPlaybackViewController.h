@@ -56,6 +56,7 @@
 {
 @private
 	IBOutlet AVPlayerDemoPlaybackView* mPlaybackView;
+    IBOutlet AVPlayerDemoPlaybackView* mPlaybackView2;
 	
 	IBOutlet UISlider* mScrubber;
     IBOutlet UIToolbar *mToolbar;
@@ -77,6 +78,7 @@
 @property (readwrite, strong, setter=setPlayer:, getter=player) AVPlayer* mPlayer;
 @property (strong) AVPlayerItem* mPlayerItem;
 @property (nonatomic, strong) IBOutlet AVPlayerDemoPlaybackView *mPlaybackView;
+@property (nonatomic, strong) IBOutlet AVPlayerDemoPlaybackView *mPlaybackView2;
 @property (nonatomic, strong) IBOutlet UIToolbar *mToolbar;
 @property (nonatomic, strong) IBOutlet UIBarButtonItem *mPlayButton;
 @property (nonatomic, strong) IBOutlet UIBarButtonItem *mStopButton;
