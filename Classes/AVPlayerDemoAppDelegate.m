@@ -143,7 +143,7 @@ typedef void (^AlertViewCompletionHandler)(void);
 		[self.playbackViewController setURL:URL];
         
 		/* Restore saved media time value from defaults system. */
-		[[self.playbackViewController player] seekToTime:CMTimeMakeWithSeconds([defaults doubleForKey:AVPlayerDemoContentTimeUserDefaultsKey], NSEC_PER_SEC)]; 
+//		[[self.playbackViewController player] seekToTime:CMTimeMakeWithSeconds([defaults doubleForKey:AVPlayerDemoContentTimeUserDefaultsKey], NSEC_PER_SEC)]; 
         
 		[self.cachedAssetBrowser pushViewController:self.playbackViewController animated:NO];
 	}
@@ -172,10 +172,10 @@ typedef void (^AlertViewCompletionHandler)(void);
 		
 		if (URL)
 		{
-			NSTimeInterval time = CMTimeGetSeconds([[self.playbackViewController player] currentTime]);
-			
-			[defaults setURL:URL forKey:AVPlayerDemoContentURLUserDefaultsKey];
-			[defaults setDouble:time forKey:AVPlayerDemoContentTimeUserDefaultsKey];
+//			NSTimeInterval time = CMTimeGetSeconds([[self.playbackViewController player] currentTime]);
+//			
+//			[defaults setURL:URL forKey:AVPlayerDemoContentURLUserDefaultsKey];
+//			[defaults setDouble:time forKey:AVPlayerDemoContentTimeUserDefaultsKey];
 		}
 		else
 		{

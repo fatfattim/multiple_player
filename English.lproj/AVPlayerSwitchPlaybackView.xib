@@ -11,11 +11,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AVPlayerSwitchPlaybackViewController">
             <connections>
-                <outlet property="mPlayButton" destination="38" id="41"/>
-                <outlet property="mPlaybackView" destination="3" id="6"/>
-                <outlet property="mScrubber" destination="40" id="43"/>
-                <outlet property="mStopButton" destination="39" id="42"/>
-                <outlet property="mToolbar" destination="37" id="48"/>
                 <outlet property="scrollView" destination="zei-Ab-1RF" id="SWR-VD-725"/>
                 <outlet property="view" destination="1" id="5"/>
             </connections>
@@ -25,49 +20,24 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3" customClass="AVPlayerDemoPlaybackView">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="201"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                    <subviews>
-                        <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" barStyle="blackTranslucent" translatesAutoresizingMaskIntoConstraints="NO" id="37">
-                            <rect key="frame" x="0.0" y="157" width="320" height="44"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                            <items/>
-                        </toolbar>
-                    </subviews>
-                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                </view>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zei-Ab-1RF" propertyAccessControl="none">
-                    <rect key="frame" x="16" y="245" width="288" height="176"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zei-Ab-1RF" propertyAccessControl="none">
+                    <rect key="frame" x="4" y="20" width="312" height="399"/>
                     <color key="backgroundColor" red="0.60000002384185791" green="0.40000000596046448" blue="0.20000000298023224" alpha="1" colorSpace="calibratedRGB"/>
                 </scrollView>
             </subviews>
             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="zei-Ab-1RF" secondAttribute="bottom" constant="41" id="4ZJ-u1-GhP"/>
+                <constraint firstAttribute="trailing" secondItem="zei-Ab-1RF" secondAttribute="trailing" constant="4" id="6D0-gx-Nbv"/>
+                <constraint firstItem="zei-Ab-1RF" firstAttribute="top" secondItem="1" secondAttribute="top" constant="20" id="GQy-VW-Zyd"/>
+                <constraint firstItem="zei-Ab-1RF" firstAttribute="centerX" secondItem="1" secondAttribute="centerX" id="Wr6-6C-oJh"/>
+            </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="42" y="43"/>
         </view>
-        <barButtonItem style="plain" systemItem="play" id="38">
-            <connections>
-                <action selector="play:" destination="-1" id="55"/>
-            </connections>
-        </barButtonItem>
-        <barButtonItem style="plain" systemItem="pause" id="39">
-            <connections>
-                <action selector="pause:" destination="-1" id="56"/>
-            </connections>
-        </barButtonItem>
         <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" id="40">
             <rect key="frame" x="0.0" y="0.0" width="240" height="29"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-            <connections>
-                <action selector="beginScrubbing:" destination="-1" eventType="touchDown" id="51"/>
-                <action selector="endScrubbing:" destination="-1" eventType="touchUpOutside" id="57"/>
-                <action selector="endScrubbing:" destination="-1" eventType="touchUpInside" id="58"/>
-                <action selector="endScrubbing:" destination="-1" eventType="touchCancel" id="60"/>
-                <action selector="scrub:" destination="-1" eventType="valueChanged" id="54"/>
-                <action selector="scrub:" destination="-1" eventType="touchDragInside" id="59"/>
-            </connections>
         </slider>
     </objects>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
