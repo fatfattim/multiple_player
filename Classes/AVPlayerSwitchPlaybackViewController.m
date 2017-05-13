@@ -45,7 +45,7 @@ static void *AVPlayerSwitchPlaybackViewControllerCurrentItemObservationContext =
         AVURLAsset *asset = [AVURLAsset URLAssetWithURL:mURL options:nil];
         
         NSArray *requestedKeys = @[@"playable"];
-        
+        NSLog(@"URL: %@" , URL.absoluteString);
         /* Tells the asset to load the values of any of the specified keys that are not already loaded. */
         [asset loadValuesAsynchronouslyForKeys:requestedKeys completionHandler:
          ^{		 
@@ -201,6 +201,7 @@ static void *AVPlayerSwitchPlaybackViewControllerCurrentItemObservationContext =
     {
         NSLog(@"AVPlayerDemoPlaybackViewController");
         controller = [[AVPlayerDemoPlaybackViewController alloc] init];
+        [controller setURL:mURL];
         [self.viewControllers replaceObjectAtIndex:page withObject:controller];
     }
     
