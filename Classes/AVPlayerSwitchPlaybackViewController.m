@@ -142,10 +142,10 @@ static void *AVPlayerSwitchPlaybackViewControllerCurrentItemObservationContext =
     // a page is the width of the scroll view
     self.scrollView.pagingEnabled = YES;
     
+    self.scrollView.clipsToBounds = NO;
+    
     //self.scrollView.frame = CGRectMake(0, 0, 300, 400);
-    self.scrollView.contentSize =
-    CGSizeMake(CGRectGetWidth(self.view.frame) * numberPages * 0.8, CGRectGetHeight(self.view.frame) * 0.8);
-    //CGSizeMake(CGRectGetWidth(self.scrollView.frame) * numberPages, CGRectGetHeight(self.scrollView.frame));
+    self.scrollView.contentSize = CGSizeMake(CGRectGetWidth(self.scrollView.frame) * numberPages, CGRectGetHeight(self.scrollView.frame));
     self.scrollView.showsHorizontalScrollIndicator = NO;
     self.scrollView.showsVerticalScrollIndicator = NO;
     self.scrollView.scrollsToTop = NO;
@@ -222,6 +222,12 @@ static void *AVPlayerSwitchPlaybackViewControllerCurrentItemObservationContext =
         [self addChildViewController:controller];
         [self.scrollView addSubview:controller.view];
         [controller didMoveToParentViewController:self];
+    }
+    
+    if(page % 2 == 1) {
+        controller.view.backgroundColor = [UIColor redColor];
+    } else {
+        controller.view.backgroundColor = [UIColor blueColor];
     }
 }
 
