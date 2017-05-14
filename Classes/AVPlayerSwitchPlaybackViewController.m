@@ -201,7 +201,6 @@ static void *AVPlayerSwitchPlaybackViewControllerCurrentItemObservationContext =
     AVPlayerDemoPlaybackViewController *controller = [self.viewControllers objectAtIndex:page];
     if ((NSNull *)controller == [NSNull null])
     {
-        NSLog(@"AVPlayerDemoPlaybackViewController");
         controller = [[AVPlayerDemoPlaybackViewController alloc] init];
         [controller setURL:mURL];
         [self.viewControllers replaceObjectAtIndex:page withObject:controller];
@@ -210,16 +209,19 @@ static void *AVPlayerSwitchPlaybackViewControllerCurrentItemObservationContext =
     // add the controller's view to the scroll view
     if (controller.view.superview == nil)
     {
-        NSLog(@"controller.view.superview ");
         CGRect frame = self.scrollView.frame;
-        frame.origin.x = CGRectGetWidth(frame) * page;
+        frame.origin.x = CGRectGetWidth(frame) * page + (frame.size.width / 8);
         frame.origin.y = 0;
+        frame.size.width = frame.size.width * 0.8;
+        frame.size.height = frame.size.height * 0.5;
         
         NSLog(@"frame.origin.x %f", frame.origin.x);
-        NSLog(@"frame.origin.y %f", frame.origin.y);
+
+        
         controller.view.frame = frame;
         
         [self addChildViewController:controller];
+        
         [self.scrollView addSubview:controller.view];
         [controller didMoveToParentViewController:self];
     }
