@@ -43,12 +43,14 @@ static void *AVPlayerSwitchPlaybackViewControllerCurrentItemObservationContext =
          Load the values for the asset key "playable".
          */
         AVURLAsset *asset = [AVURLAsset URLAssetWithURL:mURL options:nil];
-        
+
+        [self viewDidLoadForPager];
+
         NSArray *requestedKeys = @[@"playable"];
         NSLog(@"URL: %@" , URL.absoluteString);
         /* Tells the asset to load the values of any of the specified keys that are not already loaded. */
         [asset loadValuesAsynchronouslyForKeys:requestedKeys completionHandler:
-         ^{		 
+         ^{
              dispatch_async( dispatch_get_main_queue(), 
                             ^{
                                 /* IMPORTANT: Must dispatch to main queue in order to operate on the AVPlayer and AVPlayerItem. */
@@ -220,10 +222,6 @@ static void *AVPlayerSwitchPlaybackViewControllerCurrentItemObservationContext =
         [self addChildViewController:controller];
         [self.scrollView addSubview:controller.view];
         [controller didMoveToParentViewController:self];
-        
-        //NSDictionary *numberItem = [self.contentList objectAtIndex:page];
-        //controller.numberImage.image = [UIImage imageNamed:[numberItem valueForKey:kImageKey]];
-        //controller.numberTitle.text = [numberItem valueForKey:kNameKey];
     }
 }
 
