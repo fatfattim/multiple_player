@@ -229,6 +229,7 @@ static void *AVPlayerDemoPlaybackViewControllerCurrentItemObservationContext = &
 	if (isfinite(duration))
 	{
 		CGFloat width = CGRectGetWidth([self.mScrubber bounds]);
+        NSLog(@"width %f", width);
 		interval = 0.5f * duration / width;
 	}
 
