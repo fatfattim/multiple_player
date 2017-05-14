@@ -13,7 +13,6 @@
             <connections>
                 <outlet property="mPlayButton" destination="38" id="41"/>
                 <outlet property="mPlaybackView" destination="3" id="6"/>
-                <outlet property="mPlaybackView2" destination="T3d-qf-9Nz" id="aXi-g0-e2Y"/>
                 <outlet property="mScrubber" destination="40" id="43"/>
                 <outlet property="mStopButton" destination="39" id="42"/>
                 <outlet property="mToolbar" destination="37" id="48"/>
@@ -31,18 +30,6 @@
                     <subviews>
                         <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="blackTranslucent" id="37">
                             <rect key="frame" x="0.0" y="157" width="320" height="44"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                            <items/>
-                        </toolbar>
-                    </subviews>
-                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                </view>
-                <view contentMode="scaleToFill" misplaced="YES" id="T3d-qf-9Nz" userLabel="MPlayback View2" customClass="AVPlayerDemoPlaybackView">
-                    <rect key="frame" x="41" y="355" width="220" height="85"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                    <subviews>
-                        <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="blackTranslucent" id="9Qh-Ob-z0H">
-                            <rect key="frame" x="0.0" y="41" width="220" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                             <items/>
                         </toolbar>
