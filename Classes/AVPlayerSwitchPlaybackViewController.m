@@ -44,7 +44,7 @@ static void *AVPlayerSwitchPlaybackViewControllerCurrentItemObservationContext =
          */
         AVURLAsset *asset = [AVURLAsset URLAssetWithURL:mURL options:nil];
 
-        [self viewDidLoadForPager];
+        //[self viewDidLoadForPager];
 
         NSArray *requestedKeys = @[@"playable"];
         NSLog(@"URL: %@" , URL.absoluteString);
@@ -160,7 +160,7 @@ static void *AVPlayerSwitchPlaybackViewControllerCurrentItemObservationContext =
 }
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
-       NSLog(@"scrollViewWillBeginDragging: ");
+       //NSLog(@"scrollViewWillBeginDragging: ");
 }
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
@@ -210,18 +210,20 @@ static void *AVPlayerSwitchPlaybackViewControllerCurrentItemObservationContext =
     if (controller.view.superview == nil)
     {
         CGRect frame = self.scrollView.frame;
-        frame.origin.x = CGRectGetWidth(frame) * page + (frame.size.width / 8);
-        frame.origin.y = 0;
-        frame.size.width = frame.size.width * 0.8;
-        frame.size.height = frame.size.height * 0.5;
         
-        NSLog(@"frame.origin.x %f", frame.origin.x);
-
+        NSLog(@"scroll height %f", frame.size.height);
+        
+        CGFloat videoViewWidth = frame.size.width * 0.8;
+        CGFloat padding = frame.size.width * 0.05;
+        CGFloat frontPadding = padding * 2;
+        frame.origin.x = (videoViewWidth + padding) * page + frontPadding;
+        frame.origin.y = 0;
+        frame.size.width = videoViewWidth;
+        frame.size.height = frame.size.height * 0.5;
         
         controller.view.frame = frame;
         
         [self addChildViewController:controller];
-        
         [self.scrollView addSubview:controller.view];
         [controller didMoveToParentViewController:self];
     }
