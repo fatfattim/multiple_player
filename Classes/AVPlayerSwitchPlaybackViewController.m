@@ -142,14 +142,15 @@ static void *AVPlayerSwitchPlaybackViewControllerCurrentItemObservationContext =
     // a page is the width of the scroll view
     self.scrollView.pagingEnabled = YES;
     
+    //http://ztpala.com/2011/06/22/customize-page-size-uiscrollview/
     self.scrollView.clipsToBounds = NO;
     
-    //self.scrollView.frame = CGRectMake(0, 0, 300, 400);
     self.scrollView.contentSize = CGSizeMake(CGRectGetWidth(self.scrollView.frame) * numberPages, CGRectGetHeight(self.scrollView.frame));
     self.scrollView.showsHorizontalScrollIndicator = NO;
     self.scrollView.showsVerticalScrollIndicator = NO;
     self.scrollView.scrollsToTop = NO;
     self.scrollView.delegate = self;
+    
     
     // pages are created on demand
     // load the visible page
@@ -213,16 +214,16 @@ static void *AVPlayerSwitchPlaybackViewControllerCurrentItemObservationContext =
         
         NSLog(@"scroll height %f", frame.size.height);
         
-        CGFloat videoViewWidth = frame.size.width * 0.8;
-        CGFloat padding = frame.size.width * 0.05;
-        CGFloat frontPadding = padding * 2;
-        frame.origin.x = (videoViewWidth + padding) * page + frontPadding;
+        CGFloat videoViewWidth = frame.size.width;
+        frame.origin.x = (videoViewWidth) * page;
         frame.origin.y = 0;
         frame.size.width = videoViewWidth;
         frame.size.height = frame.size.height * 0.5;
         
         controller.view.frame = frame;
-        
+        //controller.view.bounds = CGRectInset(controller.view.frame, 10.0f, 10.0f);
+        controller.view.layoutMargins = UIEdgeInsetsMake(10, 10, 10, 10);
+
         [self addChildViewController:controller];
         [self.scrollView addSubview:controller.view];
         [controller didMoveToParentViewController:self];
@@ -262,15 +263,11 @@ static void *AVPlayerSwitchPlaybackViewControllerCurrentItemObservationContext =
     
     // update the scroll view to the appropriate page
     CGRect bounds = self.scrollView.bounds;
+    NSLog(@"bounds %f" , bounds.size.width);
     bounds.origin.x = CGRectGetWidth(bounds) * page;
     bounds.origin.y = 0;
     [self.scrollView scrollRectToVisible:bounds animated:animated];
-    NSLog(@"gotoPage");
-}
-
-- (IBAction)changePage:(id)sender
-{
-    [self gotoPage:YES];    // YES = animate
+    
 }
 
 // ---------- End of Pager ----------

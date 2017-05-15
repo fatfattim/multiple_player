@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -25,23 +26,24 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3" customClass="AVPlayerDemoPlaybackView">
-                    <rect key="frame" x="0.0" y="0.0" width="396" height="200"/>
+                    <rect key="frame" x="40" y="0.0" width="317" height="200"/>
                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 </view>
                 <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="blackTranslucent" translatesAutoresizingMaskIntoConstraints="NO" id="37">
-                    <rect key="frame" x="0.0" y="200" width="396" height="44"/>
+                    <rect key="frame" x="40" y="200" width="317" height="44"/>
                     <items/>
                 </toolbar>
             </subviews>
             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="3" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="89Y-gA-a92"/>
-                <constraint firstItem="3" firstAttribute="top" secondItem="1" secondAttribute="top" id="K61-oV-Nob"/>
-                <constraint firstAttribute="bottom" secondItem="3" secondAttribute="bottom" constant="45" id="Nuc-C4-G2A"/>
-                <constraint firstItem="37" firstAttribute="width" secondItem="1" secondAttribute="width" id="gx8-7P-kLR"/>
-                <constraint firstItem="3" firstAttribute="width" secondItem="1" secondAttribute="width" id="lPC-K2-6nU"/>
-                <constraint firstItem="3" firstAttribute="bottom" secondItem="37" secondAttribute="top" id="pdb-2u-DFZ"/>
-                <constraint firstItem="3" firstAttribute="leading" secondItem="37" secondAttribute="leading" id="tSE-6g-H28"/>
+                <constraint firstAttribute="bottom" secondItem="37" secondAttribute="bottom" constant="1" id="0Ud-Hu-doJ"/>
+                <constraint firstItem="37" firstAttribute="leading" secondItem="3" secondAttribute="leading" id="COF-0F-Cqd"/>
+                <constraint firstItem="37" firstAttribute="top" secondItem="3" secondAttribute="bottom" id="HAi-SU-00l"/>
+                <constraint firstItem="3" firstAttribute="width" secondItem="1" secondAttribute="width" multiplier="0.8" id="M86-VL-g2w"/>
+                <constraint firstItem="37" firstAttribute="centerX" secondItem="1" secondAttribute="centerX" id="bx9-ur-moV"/>
+                <constraint firstItem="37" firstAttribute="top" secondItem="3" secondAttribute="bottom" id="qtF-ji-mEk"/>
+                <constraint firstItem="3" firstAttribute="top" secondItem="1" secondAttribute="top" id="uzO-G6-nQm"/>
+                <constraint firstItem="37" firstAttribute="width" secondItem="1" secondAttribute="width" multiplier="0.8" id="zHl-l5-SoZ"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="57" y="-68.5"/>
