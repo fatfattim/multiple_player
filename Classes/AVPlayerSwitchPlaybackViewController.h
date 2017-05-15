@@ -56,12 +56,7 @@
 {
 @private
 	float mRestoreAfterScrubbingRate;
-	BOOL seekToZeroBeforePlay;
-	id mTimeObserver;
-	BOOL isSeeking;
-
 	NSURL* mURL;
-    
 	AVPlayer* mPlayer;
     AVPlayerItem * mPlayerItem;
 }

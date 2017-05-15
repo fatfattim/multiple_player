@@ -19,7 +19,6 @@ static NSUInteger currentPage = 0;
 @end
 
 @interface AVPlayerSwitchPlaybackViewController (Player)
-- (void)playerItemDidReachEnd:(NSNotification *)notification ;
 - (void)prepareToPlayAsset:(AVURLAsset *)asset withKeys:(NSArray *)requestedKeys;
 @end
 
@@ -102,22 +101,6 @@ static void *AVPlayerSwitchPlaybackViewControllerCurrentItemObservationContext =
 
 - (void)viewDidLoad
 {
-
-	UIView* view  = [self view];
-
-	UISwipeGestureRecognizer* swipeUpRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipe:)];
-	[swipeUpRecognizer setDirection:UISwipeGestureRecognizerDirectionUp];
-	[view addGestureRecognizer:swipeUpRecognizer];
-	
-	UISwipeGestureRecognizer* swipeDownRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipe:)];
-	[swipeDownRecognizer setDirection:UISwipeGestureRecognizerDirectionDown];
-	[view addGestureRecognizer:swipeDownRecognizer];
-    
-    UIButton *infoButton = [UIButton buttonWithType:UIButtonTypeInfoLight];
-    [infoButton addTarget:self action:@selector(showMetadata:) forControlEvents:UIControlEventTouchUpInside];
-    
-	isSeeking = NO;
-
     [super viewDidLoad];
     
     [self viewDidLoadForPager];
@@ -325,31 +308,6 @@ static void *AVPlayerSwitchPlaybackViewControllerCurrentItemObservationContext =
 
 @implementation AVPlayerSwitchPlaybackViewController (Player)
 
-#pragma mark Player Item
-
-/* Called when the player item has played to its end time. */
-- (void)playerItemDidReachEnd:(NSNotification *)notification 
-{
-	/* After the movie has played to its end time, seek back to time zero 
-		to play it again. */
-	seekToZeroBeforePlay = YES;
-}
-
-/* ---------------------------------------------------------
- **  Get the duration for a AVPlayerItem. 
- ** ------------------------------------------------------- */
-
-/* Cancels the previously registered time observer. */
--(void)removePlayerTimeObserver
-{
-	if (mTimeObserver)
-	{
-		mTimeObserver = nil;
-	}
-}
-
-#pragma mark -
-#pragma mark Loading the Asset Keys Asynchronously
 
 #pragma mark -
 #pragma mark Error Handling - Preparing Assets for Playback Failed
@@ -366,7 +324,6 @@ static void *AVPlayerSwitchPlaybackViewControllerCurrentItemObservationContext =
 
 -(void)assetFailedToPrepareForPlayback:(NSError *)error
 {
-    [self removePlayerTimeObserver];
     /* Display the error. */
 	UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:[error localizedDescription]
 														message:[error localizedFailureReason]
