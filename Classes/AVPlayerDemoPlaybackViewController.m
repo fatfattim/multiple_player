@@ -405,7 +405,11 @@ static void *AVPlayerDemoPlaybackViewControllerCurrentItemObservationContext = &
 	UISwipeGestureRecognizer* swipeDownRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipe:)];
 	[swipeDownRecognizer setDirection:UISwipeGestureRecognizerDirectionDown];
 	[view addGestureRecognizer:swipeDownRecognizer];
-
+    
+    CGRect sliderFrame = mPlaybackView.frame;
+    sliderFrame.size.height = mScrubber.frame.size.height;
+    self.mScrubber.frame = sliderFrame;
+    
     UIBarButtonItem *scrubberItem = [[UIBarButtonItem alloc] initWithCustomView:self.mScrubber];
     UIBarButtonItem *flexItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     

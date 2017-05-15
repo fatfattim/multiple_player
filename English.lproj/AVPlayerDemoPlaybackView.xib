@@ -30,20 +30,19 @@
                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 </view>
                 <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="blackTranslucent" translatesAutoresizingMaskIntoConstraints="NO" id="37">
-                    <rect key="frame" x="40" y="200" width="317" height="44"/>
+                    <rect key="frame" x="0.0" y="200" width="396" height="44"/>
                     <items/>
                 </toolbar>
             </subviews>
             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="37" secondAttribute="bottom" constant="1" id="0Ud-Hu-doJ"/>
-                <constraint firstItem="37" firstAttribute="leading" secondItem="3" secondAttribute="leading" id="COF-0F-Cqd"/>
-                <constraint firstItem="37" firstAttribute="top" secondItem="3" secondAttribute="bottom" id="HAi-SU-00l"/>
+                <constraint firstItem="3" firstAttribute="centerX" secondItem="37" secondAttribute="centerX" id="9R5-Cl-FOr"/>
+                <constraint firstItem="3" firstAttribute="centerX" secondItem="1" secondAttribute="centerX" id="EaG-zY-KWG"/>
                 <constraint firstItem="3" firstAttribute="width" secondItem="1" secondAttribute="width" multiplier="0.8" id="M86-VL-g2w"/>
-                <constraint firstItem="37" firstAttribute="centerX" secondItem="1" secondAttribute="centerX" id="bx9-ur-moV"/>
-                <constraint firstItem="37" firstAttribute="top" secondItem="3" secondAttribute="bottom" id="qtF-ji-mEk"/>
+                <constraint firstItem="37" firstAttribute="width" secondItem="1" secondAttribute="width" id="Mfg-E9-CLy"/>
                 <constraint firstItem="3" firstAttribute="top" secondItem="1" secondAttribute="top" id="uzO-G6-nQm"/>
-                <constraint firstItem="37" firstAttribute="width" secondItem="1" secondAttribute="width" multiplier="0.8" id="zHl-l5-SoZ"/>
+                <constraint firstItem="3" firstAttribute="bottom" secondItem="37" secondAttribute="top" id="w4u-ZL-hoV"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="57" y="-68.5"/>
@@ -59,7 +58,7 @@
             </connections>
         </barButtonItem>
         <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" id="40">
-            <rect key="frame" x="0.0" y="-1" width="240" height="29"/>
+            <rect key="frame" x="0.0" y="0.0" width="240" height="29"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
             <connections>
                 <action selector="beginScrubbing:" destination="-1" eventType="touchDown" id="51"/>
