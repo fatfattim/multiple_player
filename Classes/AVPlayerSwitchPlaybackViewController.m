@@ -36,26 +36,6 @@ static void *AVPlayerSwitchPlaybackViewControllerCurrentItemObservationContext =
 	if (mURL != URL)
 	{
 		mURL = [URL copy];
-		
-        /*
-         Create an asset for inspection of a resource referenced by a given URL.
-         Load the values for the asset key "playable".
-         */
-        AVURLAsset *asset = [AVURLAsset URLAssetWithURL:mURL options:nil];
-
-        //[self viewDidLoadForPager];
-
-        NSArray *requestedKeys = @[@"playable"];
-        NSLog(@"URL: %@" , URL.absoluteString);
-        /* Tells the asset to load the values of any of the specified keys that are not already loaded. */
-        [asset loadValuesAsynchronouslyForKeys:requestedKeys completionHandler:
-         ^{
-             dispatch_async( dispatch_get_main_queue(), 
-                            ^{
-                                /* IMPORTANT: Must dispatch to main queue in order to operate on the AVPlayer and AVPlayerItem. */
-                                [self prepareToPlayAsset:asset withKeys:requestedKeys];
-                            });
-         }];
 	}
 }
 
@@ -63,15 +43,6 @@ static void *AVPlayerSwitchPlaybackViewControllerCurrentItemObservationContext =
 {
 	return mURL;
 }
-
-#pragma mark -
-#pragma mark Movie scrubber control
-
-- (BOOL)isScrubbing
-{
-	return mRestoreAfterScrubbingRate != 0.f;
-}
-
 
 #pragma mark
 #pragma mark View Controller
@@ -298,84 +269,5 @@ static void *AVPlayerSwitchPlaybackViewControllerCurrentItemObservationContext =
 	}
 	
 }
-
-- (void)dealloc
-{
-	[mPlayer.currentItem removeObserver:self forKeyPath:@"status"];
-}
-
-@end
-
-@implementation AVPlayerSwitchPlaybackViewController (Player)
-
-
-#pragma mark -
-#pragma mark Error Handling - Preparing Assets for Playback Failed
-
-/* --------------------------------------------------------------
- **  Called when an asset fails to prepare for playback for any of
- **  the following reasons:
- ** 
- **  1) values of asset keys did not load successfully, 
- **  2) the asset keys did load successfully, but the asset is not 
- **     playable
- **  3) the item did not become ready to play. 
- ** ----------------------------------------------------------- */
-
--(void)assetFailedToPrepareForPlayback:(NSError *)error
-{
-    /* Display the error. */
-	UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:[error localizedDescription]
-														message:[error localizedFailureReason]
-													   delegate:nil
-											  cancelButtonTitle:@"OK"
-											  otherButtonTitles:nil];
-	[alertView show];
-}
-
-
-#pragma mark Prepare to play asset, URL
-
-/*
- Invoked at the completion of the loading of the values for all keys on the asset that we require.
- Checks whether loading was successfull and whether the asset is playable.
- If so, sets up an AVPlayerItem and an AVPlayer to play the asset.
- */
-- (void)prepareToPlayAsset:(AVURLAsset *)asset withKeys:(NSArray *)requestedKeys
-{
-    /* Make sure that the value of each key has loaded successfully. */
-	for (NSString *thisKey in requestedKeys)
-	{
-		NSError *error = nil;
-		AVKeyValueStatus keyStatus = [asset statusOfValueForKey:thisKey error:&error];
-		if (keyStatus == AVKeyValueStatusFailed)
-		{
-			[self assetFailedToPrepareForPlayback:error];
-			return;
-		}
-		/* If you are also implementing -[AVAsset cancelLoading], add your code here to bail out properly in the case of cancellation. */
-	}
-    
-    /* Use the AVAsset playable property to detect whether the asset can be played. */
-    if (!asset.playable) 
-    {
-        /* Generate an error describing the failure. */
-		NSString *localizedDescription = NSLocalizedString(@"Item cannot be played", @"Item cannot be played description");
-		NSString *localizedFailureReason = NSLocalizedString(@"The assets tracks were loaded, but could not be made playable.", @"Item cannot be played failure reason");
-		NSDictionary *errorDict = [NSDictionary dictionaryWithObjectsAndKeys:
-								   localizedDescription, NSLocalizedDescriptionKey, 
-								   localizedFailureReason, NSLocalizedFailureReasonErrorKey, 
-								   nil];
-		NSError *assetCannotBePlayedError = [NSError errorWithDomain:@"StitchedStreamPlayer" code:0 userInfo:errorDict];
-        
-        /* Display the error to the user. */
-        [self assetFailedToPrepareForPlayback:assetCannotBePlayedError];
-        
-        return;
-    }
-	
-	/* At this point we're ready to set up for playback of the asset. */
-}
-
 @end
 

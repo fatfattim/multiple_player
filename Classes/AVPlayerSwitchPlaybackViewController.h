@@ -54,11 +54,7 @@
 
 @interface AVPlayerSwitchPlaybackViewController : UIViewController <UIScrollViewDelegate>
 {
-@private
-	float mRestoreAfterScrubbingRate;
 	NSURL* mURL;
-	AVPlayer* mPlayer;
-    AVPlayerItem * mPlayerItem;
 }
 @property (nonatomic, strong) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, copy) NSURL* URL;
