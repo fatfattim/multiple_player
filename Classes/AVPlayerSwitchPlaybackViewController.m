@@ -170,10 +170,11 @@ static NSUInteger currentPage = 0;
         
         CGFloat videoViewWidth = frame.size.width;
         frame.origin.x = (videoViewWidth) * page;
-        frame.origin.y = 0;
+        frame.origin.y = -self.scrollView.frame.origin.y;
         frame.size.width = videoViewWidth;
-        frame.size.height = frame.size.height * 0.8;
-        
+        frame.size.height = frame.size.height;
+        //frame.size.height = frame.size.height * 0.8;
+        NSLog(@"y position : %f " , self.scrollView.frame.origin.y);
         controller.view.frame = frame;
 
         [self addChildViewController:controller];
@@ -202,6 +203,12 @@ static NSUInteger currentPage = 0;
     [self loadScrollViewWithPage:page];
     [self loadScrollViewWithPage:page + 1];
     // a possible optimization would be to unload the views+controllers which are no longer visible
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    [scrollView setContentOffset: CGPointMake(scrollView.contentOffset.x, -scrollView.frame.origin.y)];
+    
 }
 
 - (void)gotoPage:(BOOL)animated
