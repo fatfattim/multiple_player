@@ -5,26 +5,17 @@
 
 static NSUInteger pager_count = 6;
 static NSUInteger currentPage = 0;
+
 @interface AVPlayerSwitchPlaybackViewController ()
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil;
 - (id)init;
-- (void)dealloc;
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation;
 - (void)viewDidLoad;
-- (void)handleSwipe:(UISwipeGestureRecognizer*)gestureRecognizer;
 - (void)setURL:(NSURL*)URL;
 - (NSURL*)URL;
 
 @property (nonatomic, strong) NSMutableArray *viewControllers;
 @end
-
-@interface AVPlayerSwitchPlaybackViewController (Player)
-- (void)prepareToPlayAsset:(AVURLAsset *)asset withKeys:(NSArray *)requestedKeys;
-@end
-
-static void *AVPlayerSwitchPlaybackViewControllerRateObservationContext = &AVPlayerSwitchPlaybackViewControllerRateObservationContext;
-static void *AVPlayerSwitchPlaybackViewControllerStatusObservationContext = &AVPlayerSwitchPlaybackViewControllerStatusObservationContext;
-static void *AVPlayerSwitchPlaybackViewControllerCurrentItemObservationContext = &AVPlayerSwitchPlaybackViewControllerCurrentItemObservationContext;
 
 #pragma mark -
 @implementation AVPlayerSwitchPlaybackViewController
@@ -105,18 +96,8 @@ static void *AVPlayerSwitchPlaybackViewControllerCurrentItemObservationContext =
     self.scrollView.scrollsToTop = NO;
     self.scrollView.delegate = self;
     
-    
-    // pages are created on demand
-    // load the visible page
-    // load the page on either side to avoid flashes when the user starts scrolling
-    //
-    [self loadScrollViewWithPage:0];
-    [self loadScrollViewWithPage:1];
 }
 
-- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
-       //NSLog(@"scrollViewWillBeginDragging: ");
-}
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
     // remove all the subviews from our scrollview
@@ -148,7 +129,7 @@ static void *AVPlayerSwitchPlaybackViewControllerCurrentItemObservationContext =
 
 - (void)loadScrollViewWithPage:(NSUInteger)page
 {
-    NSLog(@"loadScrollViewWithPage: %lu" , (unsigned long)page);
+    //NSLog(@"loadScrollViewWithPage: %lu" , (unsigned long)page);
     if (page >= pager_count)
         return;
     
@@ -175,15 +156,13 @@ static void *AVPlayerSwitchPlaybackViewControllerCurrentItemObservationContext =
         frame.size.height = frame.size.height * 0.5;
         
         controller.view.frame = frame;
-        //controller.view.bounds = CGRectInset(controller.view.frame, 10.0f, 10.0f);
-        controller.view.layoutMargins = UIEdgeInsetsMake(10, 10, 10, 10);
 
         [self addChildViewController:controller];
         [self.scrollView addSubview:controller.view];
         [controller didMoveToParentViewController:self];
     }
     
-    if(page % 2 == 1) {
+    if(page % 2 == 1) { //testing codes
         controller.view.backgroundColor = [UIColor redColor];
     } else {
         controller.view.backgroundColor = [UIColor blueColor];
@@ -217,7 +196,6 @@ static void *AVPlayerSwitchPlaybackViewControllerCurrentItemObservationContext =
     
     // update the scroll view to the appropriate page
     CGRect bounds = self.scrollView.bounds;
-    NSLog(@"bounds %f" , bounds.size.width);
     bounds.origin.x = CGRectGetWidth(bounds) * page;
     bounds.origin.y = 0;
     [self.scrollView scrollRectToVisible:bounds animated:animated];
@@ -236,38 +214,5 @@ static void *AVPlayerSwitchPlaybackViewControllerCurrentItemObservationContext =
     self.title = [mURL lastPathComponent];
 }
 
-- (void)handleSwipe:(UISwipeGestureRecognizer *)gestureRecognizer
-{
-	UIView* view = [self view];
-	UISwipeGestureRecognizerDirection direction = [gestureRecognizer direction];
-	CGPoint location = [gestureRecognizer locationInView:view];
-	
-	if (location.y < CGRectGetMidY([view bounds]))
-	{
-		if (direction == UISwipeGestureRecognizerDirectionUp)
-		{
-			[UIView animateWithDuration:0.2f animations:
-			^{
-				[[self navigationController] setNavigationBarHidden:YES animated:YES];
-			} completion:
-			^(BOOL finished)
-			{
-				[[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
-			}];
-		}
-		if (direction == UISwipeGestureRecognizerDirectionDown)
-		{
-			[UIView animateWithDuration:0.2f animations:
-			^{
-				[[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
-			} completion:
-			^(BOOL finished)
-			{
-				[[self navigationController] setNavigationBarHidden:NO animated:YES];
-			}];
-		}
-	}
-	
-}
 @end
 
