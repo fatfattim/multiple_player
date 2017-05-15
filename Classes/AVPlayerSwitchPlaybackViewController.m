@@ -64,9 +64,29 @@ static NSUInteger currentPage = 0;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    NSLog(@"viewDidLoad");
     [self viewDidLoadForPager];
 }
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    NSLog(@"viewWillAppear");
+    // ScrollView's height will be different in this life-cycle
+    // Therefore, we move to viewDidAppear
+    //[self loadScrollViewWithPage:0];
+    //[self loadScrollViewWithPage:1];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    NSLog(@"viewDidAppear");
+    [self loadScrollViewWithPage:0];
+    [self loadScrollViewWithPage:1];
+    
+}
+
 
 // ---------- Start of Pager ----------
 
@@ -147,13 +167,11 @@ static NSUInteger currentPage = 0;
     {
         CGRect frame = self.scrollView.frame;
         
-        NSLog(@"scroll height %f", frame.size.height);
-        
         CGFloat videoViewWidth = frame.size.width;
         frame.origin.x = (videoViewWidth) * page;
         frame.origin.y = 0;
         frame.size.width = videoViewWidth;
-        frame.size.height = frame.size.height * 0.5;
+        frame.size.height = frame.size.height * 0.8;
         
         controller.view.frame = frame;
 

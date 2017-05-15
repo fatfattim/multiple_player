@@ -22,15 +22,15 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zei-Ab-1RF" propertyAccessControl="none">
-                    <rect key="frame" x="32" y="72" width="256" height="317"/>
+                    <rect key="frame" x="32" y="72" width="256" height="230"/>
                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.89608304794520544" colorSpace="calibratedRGB"/>
                 </scrollView>
             </subviews>
             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="zei-Ab-1RF" firstAttribute="width" secondItem="1" secondAttribute="width" multiplier="0.8" id="1ca-rH-cUC"/>
-                <constraint firstItem="zei-Ab-1RF" firstAttribute="centerY" secondItem="1" secondAttribute="centerY" id="75d-WB-AAn"/>
                 <constraint firstItem="zei-Ab-1RF" firstAttribute="top" secondItem="1" secondAttribute="top" constant="72" id="X8C-Da-prX"/>
+                <constraint firstItem="zei-Ab-1RF" firstAttribute="height" secondItem="1" secondAttribute="height" multiplier="0.5" id="ihm-fb-lLT"/>
                 <constraint firstItem="zei-Ab-1RF" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="32" id="jys-yj-pC2"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
