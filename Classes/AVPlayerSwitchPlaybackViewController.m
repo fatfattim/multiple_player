@@ -65,13 +65,13 @@ static NSUInteger currentPage = 0;
 {
     [super viewDidLoad];
     NSLog(@"viewDidLoad");
-    [self viewDidLoadForPager];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     NSLog(@"viewWillAppear");
+    [self viewDidLoadForPager];
     // ScrollView's height will be different in this life-cycle
     // Therefore, we move to viewDidAppear
     //[self loadScrollViewWithPage:0];
@@ -109,6 +109,7 @@ static NSUInteger currentPage = 0;
     
     //http://ztpala.com/2011/06/22/customize-page-size-uiscrollview/
     self.scrollView.clipsToBounds = NO;
+    self.scrollView.bounces = NO;
     
     self.scrollView.contentSize = CGSizeMake(CGRectGetWidth(self.scrollView.frame) * numberPages, CGRectGetHeight(self.scrollView.frame));
     self.scrollView.showsHorizontalScrollIndicator = NO;
