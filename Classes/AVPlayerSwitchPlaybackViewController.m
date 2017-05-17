@@ -61,30 +61,14 @@ static NSUInteger currentPage = 0;
 	}
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    NSLog(@"viewDidLoad");
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    NSLog(@"viewWillAppear");
-    [self viewDidLoadForPager];
-    // ScrollView's height will be different in this life-cycle
-    // Therefore, we move to viewDidAppear
-    //[self loadScrollViewWithPage:0];
-    //[self loadScrollViewWithPage:1];
-}
-
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    [self viewDidLoadForPager];
     NSLog(@"viewDidAppear");
     [self loadScrollViewWithPage:0];
     [self loadScrollViewWithPage:1];
-    
+    [self scrollViewDidScroll:self.scrollView];
 }
 
 
@@ -207,8 +191,8 @@ static NSUInteger currentPage = 0;
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
+    // Fix y position
     [scrollView setContentOffset: CGPointMake(scrollView.contentOffset.x, -scrollView.frame.origin.y)];
-    
 }
 
 - (void)gotoPage:(BOOL)animated
