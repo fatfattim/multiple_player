@@ -100,6 +100,8 @@ static void *AVPlayerDemoPlaybackViewControllerCurrentItemObservationContext = &
 	{
 		mURL = [URL copy];
 		
+        
+        //mURL = [[NSURL alloc] initWithString:@"http://linear.demo.kkstream.tv/ch1.m3u8"];
         /*
          Create an asset for inspection of a resource referenced by a given URL.
          Load the values for the asset key "playable".
@@ -382,22 +384,21 @@ static void *AVPlayerDemoPlaybackViewControllerCurrentItemObservationContext = &
 
 - (void)viewDidUnload
 {
+    [super viewDidUnload];
     self.mPlaybackView = nil;
 	
     self.mToolbar = nil;
     self.mPlayButton = nil;
     self.mStopButton = nil;
     self.mScrubber = nil;
-	
-	[super viewDidUnload];
 }
 
 - (void)viewDidLoad
-{    
+{
+    [super viewDidLoad];
 	[self setPlayer:nil];
 
 	UIView* view  = [self view];
-
 	UISwipeGestureRecognizer* swipeUpRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipe:)];
 	[swipeUpRecognizer setDirection:UISwipeGestureRecognizerDirectionUp];
 	[view addGestureRecognizer:swipeUpRecognizer];
@@ -424,14 +425,13 @@ static void *AVPlayerDemoPlaybackViewControllerCurrentItemObservationContext = &
 	[self syncPlayPauseButtons];
 	[self syncScrubber];
 
-    [super viewDidLoad];
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
+    [super viewWillDisappear:animated];
 	[self.mPlayer pause];
-	
-	[super viewWillDisappear:animated];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
